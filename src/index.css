@@ -2,11 +2,11 @@
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #21405d;
+  color: #163754;
   background:
-    radial-gradient(circle at 14% 22%, rgba(179, 221, 255, 0.34) 0%, rgba(179, 221, 255, 0) 42%),
-    radial-gradient(circle at 80% 12%, rgba(203, 232, 255, 0.55) 0%, rgba(203, 232, 255, 0) 40%),
-    linear-gradient(180deg, #ffffff 0%, #f5fbff 58%, #edf6ff 100%);
+    radial-gradient(circle at 14% 22%, rgba(179, 221, 255, 0.2) 0%, rgba(179, 221, 255, 0) 42%),
+    radial-gradient(circle at 80% 12%, rgba(203, 232, 255, 0.35) 0%, rgba(203, 232, 255, 0) 40%),
+    linear-gradient(180deg, #ffffff 0%, #f7fbff 58%, #f1f7ff 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,17 +21,17 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 70% 30%, rgba(173, 214, 246, 0.2) 0%, transparent 35%),
-    linear-gradient(180deg, #ffffff 0%, #eff7ff 100%);
+    radial-gradient(circle at 70% 30%, rgba(173, 214, 246, 0.12) 0%, transparent 35%),
+    linear-gradient(180deg, #ffffff 0%, #f3f9ff 100%);
 }
 
 a {
-  color: #2e6ca8;
+  color: #1f5f96;
   text-decoration: none;
 }
 
 a:hover {
-  color: #1f5a93;
+  color: #174f81;
   text-decoration: underline;
 }
 
@@ -51,7 +51,7 @@ a:hover {
 .page::after {
   content: '✶';
   position: absolute;
-  color: rgba(122, 180, 223, 0.45);
+  color: rgba(122, 180, 223, 0.3);
   pointer-events: none;
   line-height: 1;
 }
@@ -79,8 +79,8 @@ a:hover {
 
 .sticker {
   position: absolute;
-  opacity: 0.5;
-  filter: saturate(0.75);
+  opacity: 0.4;
+  filter: saturate(0.6);
 }
 
 .sticker:not(img) {
@@ -91,8 +91,8 @@ img.sticker {
   width: 98px;
   height: auto;
   object-fit: contain;
-  opacity: 0.86;
-  filter: drop-shadow(0 8px 12px rgba(122, 166, 207, 0.3));
+  opacity: 0.74;
+  filter: drop-shadow(0 6px 10px rgba(122, 166, 207, 0.22));
 }
 
 .sticker-cat {
@@ -137,7 +137,7 @@ img.sticker {
   margin: 0;
   font-weight: 700;
   letter-spacing: 0.35px;
-  color: #2b4f71;
+  color: #1f4467;
 }
 
 .topbar-actions {
@@ -146,9 +146,9 @@ img.sticker {
 }
 
 .ghost-button {
-  border: 1px solid #c8def4;
-  background: rgba(255, 255, 255, 0.92);
-  color: #34689a;
+  border: 1px solid #afcfe9;
+  background: #ffffff;
+  color: #1f4f7c;
   padding: 8px 12px;
   border-radius: 999px;
   cursor: pointer;
@@ -156,12 +156,13 @@ img.sticker {
 }
 
 .ghost-button:hover {
-  border-color: #9fc4e9;
-  background: #f2f9ff;
+  border-color: #7eafda;
+  background: #eaf4ff;
 }
 
 .ghost-button.active {
-  background: #e6f2ff;
+  background: #d8ebff;
+  border-color: #6ca1d1;
 }
 
 .layout {
@@ -174,12 +175,11 @@ img.sticker {
 
 .card {
   grid-column: span 12;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid #d8e9f8;
+  background: #ffffff;
+  border: 1px solid #c7ddf1;
   border-radius: 22px;
   padding: 22px;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 12px 30px rgba(98, 145, 191, 0.14);
+  box-shadow: 0 10px 24px rgba(98, 145, 191, 0.11);
   position: relative;
 }
 
@@ -189,18 +189,18 @@ img.sticker {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.42), rgba(213, 236, 255, 0.06));
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.22), rgba(213, 236, 255, 0.03));
 }
 
 .card h2 {
-  color: #2b5579;
+  color: #1f4a70;
   letter-spacing: 0.1px;
 }
 
 .hero h1 {
   margin: 8px 0;
   font-size: clamp(1.7rem, 3vw, 2.5rem);
-  color: #274e72;
+  color: #183d60;
 }
 
 .pill {
@@ -208,9 +208,9 @@ img.sticker {
   margin: 0 0 8px;
   padding: 6px 13px;
   border-radius: 999px;
-  background: #e8f3ff;
-  border: 1px solid #c8e0f7;
-  color: #3a6892;
+  background: #e0efff;
+  border: 1px solid #b5d3ee;
+  color: #234d76;
   font-size: 0.86rem;
 }
 
@@ -225,7 +225,7 @@ img.sticker {
 }
 
 .timeline-item {
-  border-left: 3px solid #a9ceed;
+  border-left: 3px solid #7fb1dc;
   padding-left: 12px;
 }
 
@@ -237,7 +237,7 @@ img.sticker {
 
 .timeline-year {
   font-size: 0.9rem;
-  opacity: 0.9;
+  color: #355f86;
 }
 
 .projects {
@@ -250,14 +250,14 @@ img.sticker {
   display: block;
   border-radius: 16px;
   padding: 12px;
-  border: 1px solid #d5e7f8;
-  background: linear-gradient(180deg, #fbfeff 0%, #f2f8ff 100%);
+  border: 1px solid #c3dbf0;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 
 .project:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(131, 170, 209, 0.18);
+  box-shadow: 0 8px 16px rgba(131, 170, 209, 0.24);
 }
 
 .project h3 {
@@ -270,7 +270,7 @@ img.sticker {
 
 .project span {
   font-size: 0.85rem;
-  opacity: 0.85;
+  color: #3f668b;
 }
 
 .skills-manager .hint {
@@ -293,26 +293,26 @@ img.sticker {
 .skill-add input {
   flex: 1;
   min-width: 220px;
-  border: 1px solid #c7dcf2;
+  border: 1px solid #aacbe8;
   border-radius: 12px;
   padding: 8px 10px;
   background: #ffffff;
-  color: #224668;
+  color: #163d63;
 }
 
 .skill-add button {
-  border: 1px solid #c3daf1;
+  border: 1px solid #a6c8e6;
   border-radius: 12px;
   padding: 8px 10px;
-  background: #eef6ff;
-  color: #2f6394;
+  background: #e2f0ff;
+  color: #1e507e;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .skill-add button:hover {
-  border-color: #9fc4e9;
-  background: #e2f0ff;
+  border-color: #75a9d8;
+  background: #d5e8fb;
 }
 
 .check-row {
