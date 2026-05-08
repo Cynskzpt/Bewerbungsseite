@@ -24,10 +24,7 @@ function App() {
     <div className="page">
       <div className="floating-stickers" aria-hidden="true">
         <img className="sticker sticker-cat" src="/stickers/cat.png" alt="" />
-        <span className="sticker sticker-spiral-a">🌀</span>
-        <span className="sticker sticker-spiral-b">➰</span>
         <img className="sticker sticker-bunny" src="/stickers/miffy.png" alt="" />
-        <span className="sticker sticker-star">✦</span>
       </div>
 
       <header className="topbar">
@@ -52,13 +49,13 @@ function App() {
 
       <main className="layout">
         <section className="card hero">
-          <p className="pill">🌀 {text.badge}</p>
+          <p className="pill">{text.badge}</p>
           <h1>{text.heroTitle}</h1>
           <p>{text.heroText.replace('{age}', String(age))}</p>
         </section>
 
         <section className="card">
-          <h2>🐈 {text.aboutTitle}</h2>
+          <h2>{text.aboutTitle}</h2>
           <ul className="list">
             {text.aboutItems.map((item) => (
               <li key={item}>{item}</li>
@@ -66,8 +63,9 @@ function App() {
           </ul>
         </section>
 
-        <section className="card">
-          <h2>✦ {text.cvTitle}</h2>
+        <section className="card cv-card">
+          <img className="card-spiral" src="/stickers/spiral.png" alt="" aria-hidden="true" />
+          <h2>{text.cvTitle}</h2>
           <div className="timeline">
             {text.cvTimeline.map((item) => (
               <article key={item.title} className="timeline-item">
@@ -80,7 +78,7 @@ function App() {
         </section>
 
         <section className="card">
-          <h2>🌀 {text.projectsTitle}</h2>
+          <h2>{text.projectsTitle}</h2>
           {loading && <p>{text.loadingProjects}</p>}
           {error && <p>{text.projectsError}</p>}
           {!loading && !error && (
@@ -98,12 +96,12 @@ function App() {
         </section>
 
         <section className="card">
-          <h2>🐰 {text.skillsTitle}</h2>
+          <h2>{text.skillsTitle}</h2>
           <SkillsManager language={language} isOwnerMode={isOwnerMode} />
         </section>
 
         <section className="card">
-          <h2>➰ {text.contactTitle}</h2>
+          <h2>{text.contactTitle}</h2>
           <ul className="list">
             <li>Email: <a href="mailto:cynthiacavaleiro2011@outlook.com">cynthiacavaleiro2011@outlook.com</a></li>
             <li>Telefon: <a href="tel:+41762058062">+41 76 205 80 62</a></li>
