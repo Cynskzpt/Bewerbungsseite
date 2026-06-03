@@ -37,3 +37,10 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Vercel deploy
+
+- Production branch should be `main`.
+- After `git push`, Vercel should auto-deploy. If the live site is old, open the Vercel project → **Deployments** → **Redeploy** the latest `main` commit (or fix a failed build).
+- For edit mode on production, set `VITE_EDIT_PASSWORD` in Vercel → **Settings** → **Environment Variables** (Production), then redeploy.
+- Copy `.env.example` to `.env.local` for local development only (never commit `.env.local`).
