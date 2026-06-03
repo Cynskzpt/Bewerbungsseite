@@ -13,6 +13,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: 'Philosykos';
+  src:
+    url('/fonts/Philosykos-Regular.woff2') format('woff2'),
+    url('/fonts/Philosykos-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Philosykos';
+  src:
+    url('/fonts/Philosykos-Bold.woff2') format('woff2'),
+    url('/fonts/Philosykos-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -37,6 +57,21 @@ a:hover {
 
 #root {
   min-height: 100vh;
+}
+
+.error-fallback {
+  max-width: 520px;
+  margin: 48px auto;
+  padding: 24px;
+  border-radius: 22px;
+  border: 1px solid #c7ddf1;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(98, 145, 191, 0.11);
+  color: #123f66;
+}
+
+.error-fallback h1 {
+  margin-top: 0;
 }
 
 .page {
@@ -96,8 +131,8 @@ img.sticker {
 }
 
 .sticker-cat {
-  top: 88px;
-  right: 32px;
+  top: 52%;
+  right: 6%;
   transform: rotate(-8deg);
 }
 
@@ -138,9 +173,14 @@ img.sticker.sticker-bunny {
 
 .brand {
   margin: 0;
-  font-weight: 700;
-  letter-spacing: 0.35px;
-  color: #143a5c;
+  font-family: 'Philosykos', 'DM Serif Display', 'Antic Didone', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.15rem, 5vw, 3.35rem);
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+  color: #123f66;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 .topbar-actions {
@@ -200,10 +240,99 @@ img.sticker.sticker-bunny {
   letter-spacing: 0.1px;
 }
 
+.hero {
+  overflow: visible;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
 .hero h1 {
   margin: 8px 0;
   font-size: clamp(1.7rem, 3vw, 2.5rem);
   color: #0f3657;
+}
+
+.hero-portrait {
+  --parallax-y: 0px;
+  margin: 0;
+  position: relative;
+  width: clamp(148px, 22vw, 232px);
+  flex-shrink: 0;
+  transform: rotate(2.5deg) translate3d(0, var(--parallax-y), 0);
+  filter: drop-shadow(0 14px 28px rgba(74, 130, 178, 0.28));
+  will-change: transform;
+}
+
+.hero-portrait-float {
+  position: relative;
+  animation: portrait-float 5.5s ease-in-out infinite;
+}
+
+@keyframes portrait-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait {
+    will-change: auto;
+    transform: rotate(2.5deg);
+  }
+
+  .hero-portrait-float {
+    animation: none;
+  }
+}
+
+.hero-portrait-backdrop {
+  position: absolute;
+  inset: -10px -14px 10px 14px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #d8ebff 0%, #a8cce8 100%);
+  transform: rotate(-6deg);
+  z-index: 0;
+}
+
+.hero-portrait-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 26px;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 0 3px #7fb1dc,
+    0 0 0 7px rgba(127, 177, 220, 0.25);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-portrait img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 12%;
+  border-radius: 22px;
+  border: 3px solid #ffffff;
 }
 
 .pill {
@@ -298,8 +427,50 @@ img.sticker.sticker-bunny {
 
 .skills-columns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
+}
+
+.skills-column h3 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  color: #123f66;
+}
+
+.skill-row-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-move {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #2a547b;
+}
+
+.skill-move-label {
+  white-space: nowrap;
+}
+
+.skill-move select {
+  flex: 1;
+  min-width: 140px;
+  border: 1px solid #aacbe8;
+  border-radius: 10px;
+  padding: 6px 8px;
+  background: #ffffff;
+  color: #163d63;
+  font: inherit;
+}
+
+@media (max-width: 960px) {
+  .skills-columns {
+    grid-template-columns: 1fr;
+  }
 }
 
 .skill-add {
@@ -340,14 +511,132 @@ img.sticker.sticker-bunny {
   gap: 10px;
 }
 
+.edit-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(15, 47, 75, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.edit-dialog {
+  width: min(420px, 100%);
+  margin: 0;
+  z-index: 21;
+}
+
+.edit-dialog h2 {
+  margin-top: 0;
+}
+
+.edit-dialog-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink-soft, #3d6f94);
+  font-size: 0.92rem;
+}
+
+.edit-dialog-input {
+  width: 100%;
+  border: 1px solid #aacbe8;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  color: #163d63;
+  font: inherit;
+}
+
+.edit-dialog-error {
+  margin: 0 0 10px;
+  color: #9b2c4a;
+  font-size: 0.9rem;
+}
+
+.edit-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.language-skills-card {
+  background: linear-gradient(105deg, #ffffff 0%, #f4f9ff 52%, #e8f3ff 100%);
+  border-color: #c7ddf1;
+}
+
+.language-skills-card::after {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.35), rgba(213, 236, 255, 0.12));
+}
+
+.language-skills-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.language-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 18px;
+}
+
+.language-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.language-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #d8dce3;
+  flex-shrink: 0;
+}
+
+.language-dot.filled {
+  background: linear-gradient(145deg, #7fb1dc 0%, #5a96c8 100%);
+  box-shadow: 0 2px 6px rgba(90, 150, 200, 0.35);
+}
+
+.language-name {
+  font-weight: 500;
+  color: #1a3d5c;
+  font-size: 1.05rem;
+}
+
 @media (max-width: 800px) {
+  .brand {
+    font-size: clamp(1.85rem, 7vw, 2.5rem);
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .hero-portrait {
+    order: -1;
+    width: min(200px, 58vw);
+    transform: rotate(1deg) translate3d(0, var(--parallax-y), 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-portrait {
+      transform: rotate(1deg);
+    }
+  }
+
   .topbar {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .skills-columns {
-    grid-template-columns: 1fr;
   }
 
   .sticker {
@@ -363,8 +652,8 @@ img.sticker.sticker-bunny {
   }
 
   .sticker-cat {
-    top: 164px;
-    right: 30px;
+    top: 58%;
+    right: 4%;
   }
 
   img.sticker.sticker-cat {

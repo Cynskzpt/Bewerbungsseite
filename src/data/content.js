@@ -1,8 +1,10 @@
 export const content = {
   githubUsername: 'cynskzpt',
   birthDate: '2011-01-01',
+  profilePhoto: '/profile.jpg',
   de: {
     badge: 'Bewerbung Lehrstelle Informatik Applikationsentwicklung',
+    profilePhotoAlt: 'Porträt von Cynthia Ferreira Cavaleiro',
     heroTitle: 'Hoi, ich bin Cynthia.',
     heroText:
       'Ich bin {age} Jahre alt und motiviert, meine Reise als angehende Applikationsentwicklerin zu starten.',
@@ -13,7 +15,7 @@ export const content = {
       'Im ICT-Campus habe ich Grundlagen in Python, Scratch und Logik aufgebaut.',
       'Hobbys: Musik hoeren und im ICT-Campus programmieren.',
     ],
-    cvTitle: 'Schulische Laufbahn und Erfahrungen',
+    cvTitle: 'Schulische Laufbahn',
     cvTimeline: [
       {
         year: '2017 - 2023',
@@ -30,12 +32,17 @@ export const content = {
         title: '3. Sekundarstufe, Schule Kalktarren',
         description: 'Fokus auf Lehrstellensuche Informatik Applikationsentwicklung.',
       },
-      {
-        year: '2024 - 2025',
-        title: 'Schnuppereinsaetze',
-        description:
-          'Kita Spitzacker, Sommerau Ticino Hotel, Hotel Storchen, Comdat Datasystems AG und Brack.Alltron.',
-      },
+    ],
+    schnuppereinsaetzeTitle: 'Abgeschlossene Schnuppereinsätze',
+    schnuppereinsaetzeItems: [
+      'Berufsinformationstag Modeco (Bekleidungsgestalterin)',
+      'Sommerau Ticino Hotel in Dietikon (Hotel Kommunikationsfachfrau)',
+      'Berufsinformationstag bei Hotel Storchen in Zürich (Hotel Kommunikationsfachfrau & Kauffrau)',
+      'Schnuppern bei Comdat Datasystems AG (ICT-Fachfrau & Informatik Plattformentwicklung)',
+      'Schnuppern bei Brack.Alltron (Informatik Applikationsentwicklung)',
+      'Schnuppertag bei Google (EDB & Informatikerin Applikationsentwicklung)',
+      'Schnuppernachmittag UBS (Informatikerin Plattformentwicklung & Applikationsentwicklung)',
+      'Talentmatching UBS, Swisscom, Accenture in ICT Campus',
     ],
     projectsTitle: 'Meine Projekte (GitHub)',
     loadingProjects: 'Lade Projekte von GitHub...',
@@ -43,13 +50,30 @@ export const content = {
     noProjects: 'Noch keine oeffentlichen Repositories gefunden.',
     noDescription: 'Keine Beschreibung vorhanden.',
     updatedAt: 'Zuletzt aktualisiert',
+    languagesTitle: 'Sprachliche Fähigkeiten',
+    languages: [
+      { name: 'Englisch', level: 5 },
+      { name: 'Portugiesisch', level: 5 },
+      { name: 'Deutsch', level: 4 },
+      { name: 'Französisch', level: 4 },
+    ],
     skillsTitle: 'Skills',
     contactTitle: 'Kontakt',
     ownerModeOn: 'Bearbeitungsmodus: AN',
     ownerModeOff: 'Bearbeitungsmodus',
+    ownerModeLock: 'Sperren',
+    editDialogTitle: 'Bearbeitungsmodus',
+    editDialogPasswordLabel: 'Passwort',
+    editDialogPasswordPlaceholder: 'Passwort eingeben',
+    editDialogUnlock: 'Entsperren',
+    editDialogCancel: 'Abbrechen',
+    editDialogWrongPassword: 'Falsches Passwort.',
+    editDialogNotConfigured:
+      'Bearbeitungsmodus ist noch nicht eingerichtet. Lege in .env.local die Variable VITE_EDIT_PASSWORD fest.',
   },
   en: {
     badge: 'Application for apprenticeship in software development',
+    profilePhotoAlt: 'Portrait of Cynthia Ferreira Cavaleiro',
     heroTitle: 'Hi, I am Cynthia.',
     heroText:
       'I am {age} years old and excited to begin my journey as a future software developer.',
@@ -60,7 +84,7 @@ export const content = {
       'At ICT Campus I built foundations in Python, Scratch, and programming logic.',
       'Hobbies: listening to music and coding at ICT Campus.',
     ],
-    cvTitle: 'Education and early experience',
+    cvTitle: 'Education',
     cvTimeline: [
       {
         year: '2017 - 2023',
@@ -77,12 +101,17 @@ export const content = {
         title: 'Secondary school year 3, Schule Kalktarren',
         description: 'Focused on software development apprenticeship applications.',
       },
-      {
-        year: '2024 - 2025',
-        title: 'Trial internships',
-        description:
-          'Kita Spitzacker, Sommerau Ticino Hotel, Hotel Storchen, Comdat Datasystems AG, and Brack.Alltron.',
-      },
+    ],
+    schnuppereinsaetzeTitle: 'Completed trial internships',
+    schnuppereinsaetzeItems: [
+      'Career information day at Modeco (clothing designer)',
+      'Sommerau Ticino Hotel in Dietikon (hotel communications specialist)',
+      'Career information day at Hotel Storchen in Zurich (hotel communications specialist & commercial clerk)',
+      'Trial day at Comdat Datasystems AG (ICT specialist & platform development)',
+      'Trial day at Brack.Alltron (application development)',
+      'Trial day at Google (EDB & application development)',
+      'Trial afternoon at UBS (platform & application development)',
+      'Talent matching with UBS, Swisscom, Accenture at ICT Campus',
     ],
     projectsTitle: 'My projects (GitHub)',
     loadingProjects: 'Loading projects from GitHub...',
@@ -90,9 +119,25 @@ export const content = {
     noProjects: 'No public repositories found yet.',
     noDescription: 'No description available.',
     updatedAt: 'Last updated',
+    languagesTitle: 'Language skills',
+    languages: [
+      { name: 'English', level: 5 },
+      { name: 'Portuguese', level: 5 },
+      { name: 'German', level: 4 },
+      { name: 'French', level: 4 },
+    ],
     skillsTitle: 'Skills',
     contactTitle: 'Contact',
     ownerModeOn: 'Edit mode: ON',
     ownerModeOff: 'Edit mode',
+    ownerModeLock: 'Lock',
+    editDialogTitle: 'Edit mode',
+    editDialogPasswordLabel: 'Password',
+    editDialogPasswordPlaceholder: 'Enter password',
+    editDialogUnlock: 'Unlock',
+    editDialogCancel: 'Cancel',
+    editDialogWrongPassword: 'Wrong password.',
+    editDialogNotConfigured:
+      'Edit mode is not set up yet. Add VITE_EDIT_PASSWORD to your .env.local file.',
   },
 }

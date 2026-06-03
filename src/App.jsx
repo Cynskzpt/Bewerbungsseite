@@ -1,12 +1,16 @@
 import { useMemo, useState } from 'react'
+import { EditModeDialog } from './components/EditModeDialog'
 import { content } from './data/content'
+import { useEditModeAuth } from './hooks/useEditModeAuth'
 import { useGithubRepos } from './hooks/useGithubRepos'
+import { HeroPortrait } from './components/HeroPortrait'
+import { LanguageSkills } from './components/LanguageSkills'
 import { SkillsManager } from './components/SkillsManager'
 
 function App() {
   const [language, setLanguage] = useState('de')
-  const [isOwnerMode, setIsOwnerMode] = useState(false)
   const text = content[language]
+  const editAuth = useEditModeAuth()
   const { repos, loading, error } = useGithubRepos(content.githubUsername)
 
   const age = useMemo(() => {
@@ -28,7 +32,7 @@ function App() {
       </div>
 
       <header className="topbar">
-        <p className="brand">Cynthia Ferreira Cavaleiro</p>
+        <h1 className="brand">Cynthia Ferreira Cavaleiro</h1>
         <div className="topbar-actions">
           <button
             className="ghost-button"
@@ -38,20 +42,47 @@ function App() {
             {language === 'de' ? 'English' : 'Deutsch'}
           </button>
           <button
-            className={`ghost-button ${isOwnerMode ? 'active' : ''}`}
+            className={`ghost-button ${editAuth.isOwnerMode ? 'active' : ''}`}
             type="button"
-            onClick={() => setIsOwnerMode((old) => !old)}
+            onClick={editAuth.toggleEditMode}
           >
-            {isOwnerMode ? text.ownerModeOn : text.ownerModeOff}
+            {editAuth.isOwnerMode ? text.ownerModeOn : text.ownerModeOff}
           </button>
+          {editAuth.isUnlocked && (
+            <button className="ghost-button" type="button" onClick={editAuth.lock}>
+              {text.ownerModeLock}
+            </button>
+          )}
         </div>
       </header>
 
+      <EditModeDialog
+        open={editAuth.showPasswordDialog}
+        isConfigured={editAuth.isConfigured}
+        hasError={editAuth.passwordError === 'wrong'}
+        labels={{
+          title: text.editDialogTitle,
+          passwordLabel: text.editDialogPasswordLabel,
+          passwordPlaceholder: text.editDialogPasswordPlaceholder,
+          unlock: text.editDialogUnlock,
+          cancel: text.editDialogCancel,
+          wrongPassword: text.editDialogWrongPassword,
+          notConfigured: text.editDialogNotConfigured,
+        }}
+        onSubmit={editAuth.submitPassword}
+        onClose={editAuth.closePasswordDialog}
+      />
+
       <main className="layout">
         <section className="card hero">
-          <p className="pill">{text.badge}</p>
-          <h1>{text.heroTitle}</h1>
-          <p>{text.heroText.replace('{age}', String(age))}</p>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <p className="pill">{text.badge}</p>
+              <h1>{text.heroTitle}</h1>
+              <p>{text.heroText.replace('{age}', String(age))}</p>
+            </div>
+            <HeroPortrait src={content.profilePhoto} alt={text.profilePhotoAlt} />
+          </div>
         </section>
 
         <section className="card">
@@ -78,6 +109,15 @@ function App() {
         </section>
 
         <section className="card">
+          <h2>{text.schnuppereinsaetzeTitle}</h2>
+          <ul className="list">
+            {text.schnuppereinsaetzeItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="card">
           <h2>{text.projectsTitle}</h2>
           {loading && <p>{text.loadingProjects}</p>}
           {error && <p>{text.projectsError}</p>}
@@ -95,9 +135,14 @@ function App() {
           )}
         </section>
 
+        <section className="card language-skills-card">
+          <h2>{text.languagesTitle}</h2>
+          <LanguageSkills languages={text.languages} language={language} />
+        </section>
+
         <section className="card">
           <h2>{text.skillsTitle}</h2>
-          <SkillsManager language={language} isOwnerMode={isOwnerMode} />
+          <SkillsManager language={language} isOwnerMode={editAuth.isOwnerMode} />
         </section>
 
         <section className="card">

@@ -1,49 +1,90 @@
 import { useMemo, useState } from 'react'
 
 const STORAGE_KEY = 'cynthia-portfolio-skills'
+const CATEGORIES = ['learned', 'inProgress', 'planned']
 
 const labels = {
   de: {
     learned: 'Gelernt',
+    inProgress: 'Bin ich dran',
     planned: 'Geplant zu lernen',
     addPlaceholder: 'Neuen Skill eintragen...',
-    addLearned: 'Als gelernt hinzufuegen',
-    addPlanned: 'Als geplant hinzufuegen',
+    addLearned: 'Gelernt',
+    addInProgress: 'Bin ich dran',
+    addPlanned: 'Geplant',
+    moveLabel: 'Verschieben nach',
     ownerHint:
-      'Im Bearbeitungsmodus kannst du Skills hinzufuegen. Mit Checkboxen verschiebst du Skills zwischen geplant und gelernt.',
+      'Im Bearbeitungsmodus kannst du Skills hinzufuegen und mit dem Dropdown in eine andere Spalte verschieben.',
     viewerHint: 'Aktiviere den Bearbeitungsmodus, um Skills zu bearbeiten.',
-    emptyLearned: 'Noch keine eingetragenen gelernten Skills.',
-    emptyPlanned: 'Noch keine eingetragenen geplanten Skills.',
+    emptyLearned: 'Noch keine gelernten Skills.',
+    emptyInProgress: 'Noch keine Skills, an denen du gerade arbeitest.',
+    emptyPlanned: 'Noch keine geplanten Skills.',
   },
   en: {
     learned: 'Learned',
+    inProgress: 'Working on',
     planned: 'Planned to learn',
     addPlaceholder: 'Add a new skill...',
-    addLearned: 'Add as learned',
-    addPlanned: 'Add as planned',
+    addLearned: 'Learned',
+    addInProgress: 'Working on',
+    addPlanned: 'Planned',
+    moveLabel: 'Move to',
     ownerHint:
-      'In edit mode you can add skills. Checkboxes move skills between planned and learned.',
+      'In edit mode you can add skills and use the dropdown to move them between columns.',
     viewerHint: 'Enable edit mode to manage your skills.',
     emptyLearned: 'No learned skills added yet.',
+    emptyInProgress: 'No skills you are working on yet.',
     emptyPlanned: 'No planned skills added yet.',
   },
+}
+
+const emptyKeys = {
+  learned: 'emptyLearned',
+  inProgress: 'emptyInProgress',
+  planned: 'emptyPlanned',
+}
+
+const addKeys = {
+  learned: 'addLearned',
+  inProgress: 'addInProgress',
+  planned: 'addPlanned',
+}
+
+function normalizeSkillList(value) {
+  if (!Array.isArray(value)) return []
+  return value.filter((item) => typeof item === 'string' && item.trim()).map((item) => item.trim())
 }
 
 function loadInitialSkills() {
   const fallback = {
     learned: ['Python', 'Scratch', 'Grundlagen Webentwicklung'],
-    planned: ['React', 'TypeScript', 'SQL', 'Node.js', 'Cloud Basics'],
+    inProgress: ['React', 'TypeScript'],
+    planned: ['SQL', 'Node.js', 'Cloud Basics'],
   }
 
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
     if (!saved) return fallback
     const parsed = JSON.parse(saved)
-    if (!parsed.learned || !parsed.planned) return fallback
-    return parsed
+    if (!parsed || typeof parsed !== 'object') return fallback
+
+    const learned = normalizeSkillList(parsed.learned)
+    const inProgress = normalizeSkillList(parsed.inProgress)
+    const planned = normalizeSkillList(parsed.planned)
+
+    if (learned.length === 0 && inProgress.length === 0 && planned.length === 0) {
+      return fallback
+    }
+
+    return { learned, inProgress, planned }
   } catch {
+    localStorage.removeItem(STORAGE_KEY)
     return fallback
   }
+}
+
+function hasSkill(skills, name) {
+  return CATEGORIES.some((category) => skills[category].includes(name))
 }
 
 export function SkillsManager({ language, isOwnerMode }) {
@@ -59,30 +100,25 @@ export function SkillsManager({ language, isOwnerMode }) {
   }
 
   function addSkill(target) {
-    if (!normalizedSkill) return
+    if (!normalizedSkill || hasSkill(skills, normalizedSkill)) return
     const next = {
       learned: [...skills.learned],
+      inProgress: [...skills.inProgress],
       planned: [...skills.planned],
     }
-    if (next.learned.includes(normalizedSkill) || next.planned.includes(normalizedSkill)) return
     next[target].push(normalizedSkill)
     save(next)
     setNewSkill('')
   }
 
-  function toggleToLearned(skillName) {
-    const next = {
-      learned: [...skills.learned, skillName],
-      planned: skills.planned.filter((item) => item !== skillName),
-    }
-    save(next)
-  }
-
-  function toggleToPlanned(skillName) {
+  function moveSkill(skillName, target) {
+    if (!CATEGORIES.includes(target)) return
     const next = {
       learned: skills.learned.filter((item) => item !== skillName),
-      planned: [...skills.planned, skillName],
+      inProgress: skills.inProgress.filter((item) => item !== skillName),
+      planned: skills.planned.filter((item) => item !== skillName),
     }
+    next[target].push(skillName)
     save(next)
   }
 
@@ -98,57 +134,47 @@ export function SkillsManager({ language, isOwnerMode }) {
             placeholder={t.addPlaceholder}
             type="text"
           />
-          <button type="button" onClick={() => addSkill('learned')}>
-            {t.addLearned}
-          </button>
-          <button type="button" onClick={() => addSkill('planned')}>
-            {t.addPlanned}
-          </button>
+          {CATEGORIES.map((category) => (
+            <button key={category} type="button" onClick={() => addSkill(category)}>
+              {t[addKeys[category]]}
+            </button>
+          ))}
         </div>
       )}
 
       <div className="skills-columns">
-        <article>
-          <h3>{t.learned}</h3>
-          {skills.learned.length === 0 && <p>{t.emptyLearned}</p>}
-          <ul className="list">
-            {skills.learned.map((skill) => (
-              <li key={`learned-${skill}`}>
-                <label className="check-row">
-                  {isOwnerMode && (
-                    <input
-                      type="checkbox"
-                      checked
-                      onChange={() => toggleToPlanned(skill)}
-                    />
+        {CATEGORIES.map((category) => (
+          <article key={category} className="skills-column">
+            <h3>{t[category]}</h3>
+            {skills[category].length === 0 && <p>{t[emptyKeys[category]]}</p>}
+            <ul className="list">
+              {skills[category].map((skill) => (
+                <li key={`${category}-${skill}`}>
+                  {isOwnerMode ? (
+                    <div className="skill-row-edit">
+                      <span>{skill}</span>
+                      <label className="skill-move">
+                        <span className="skill-move-label">{t.moveLabel}</span>
+                        <select
+                          value={category}
+                          onChange={(event) => moveSkill(skill, event.target.value)}
+                        >
+                          {CATEGORIES.map((option) => (
+                            <option key={option} value={option}>
+                              {t[option]}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    </div>
+                  ) : (
+                    <span>{skill}</span>
                   )}
-                  <span>{skill}</span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        </article>
-
-        <article>
-          <h3>{t.planned}</h3>
-          {skills.planned.length === 0 && <p>{t.emptyPlanned}</p>}
-          <ul className="list">
-            {skills.planned.map((skill) => (
-              <li key={`planned-${skill}`}>
-                <label className="check-row">
-                  {isOwnerMode && (
-                    <input
-                      type="checkbox"
-                      checked={false}
-                      onChange={() => toggleToLearned(skill)}
-                    />
-                  )}
-                  <span>{skill}</span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        </article>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
     </div>
   )
