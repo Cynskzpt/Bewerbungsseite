@@ -10,10 +10,10 @@ export const content = {
       'Ich bin {age} Jahre alt und motiviert, meine Reise als angehende Applikationsentwicklerin zu starten.',
     aboutTitle: 'Ueber mich',
     aboutItems: [
-      'Ich besuche aktuell die 3. Sekundarstufe in der Schule Kalktarren.',
+      'Ich besuche zurzeit das 10. Schuljahr in Dietikon (Klasse Konstruktionstechnik).',
       'Ich lerne gern praktisch und entwickle mich in Programmierung laufend weiter.',
       'Im ICT-Campus habe ich Grundlagen in Python, Scratch und Logik aufgebaut.',
-      'Hobbys: Musik hoeren und im ICT-Campus programmieren.',
+      'Hobbys: Musik hören, tanzen, zeichnen und im ICT-Campus programmieren.',
     ],
     cvTitle: 'Schulische Laufbahn',
     cvTimeline: [
@@ -28,9 +28,14 @@ export const content = {
         description: 'Vertiefung in schulischen Faechern und Berufsorientierung.',
       },
       {
-        year: '2025 - heute',
+        year: '2025 - 2026',
         title: '3. Sekundarstufe, Schule Kalktarren',
         description: 'Fokus auf Lehrstellensuche Informatik Applikationsentwicklung.',
+      },
+      {
+        year: '2026 - heute',
+        title: '10. Schuljahr, Dietikon (Konstruktionstechnik)',
+        description: 'Weiterführung der schulischen Laufbahn und Vorbereitung auf die Berufslehre.',
       },
     ],
     schnuppereinsaetzeTitle: 'Abgeschlossene Schnuppereinsätze',
@@ -43,6 +48,7 @@ export const content = {
       'Schnuppertag bei Google (EDB & Informatikerin Applikationsentwicklung)',
       'Schnuppernachmittag UBS (Informatikerin Plattformentwicklung & Applikationsentwicklung)',
       'Talentmatching UBS, Swisscom, Accenture in ICT Campus',
+      'Online Schnuppernachmittag Julius Bär (Informatikerin Applikationsentwicklung & Informatikerin Plattformentwicklung)',
     ],
     projectsTitle: 'Meine Projekte (GitHub)',
     loadingProjects: 'Lade Projekte von GitHub...',
@@ -79,10 +85,10 @@ export const content = {
       'I am {age} years old and excited to begin my journey as a future software developer.',
     aboutTitle: 'About me',
     aboutItems: [
-      'I currently attend 3rd secondary level at Schule Kalktarren.',
+      'I currently attend the 10th school year in Dietikon (Construction Technology class).',
       'I enjoy hands-on learning and improving my programming skills step by step.',
       'At ICT Campus I built foundations in Python, Scratch, and programming logic.',
-      'Hobbies: listening to music and coding at ICT Campus.',
+      'Hobbies: listening to music, dancing, drawing, and coding at ICT Campus.',
     ],
     cvTitle: 'Education',
     cvTimeline: [
@@ -97,9 +103,14 @@ export const content = {
         description: 'Strengthened academic skills and explored career paths.',
       },
       {
-        year: '2025 - today',
+        year: '2025 - 2026',
         title: 'Secondary school year 3, Schule Kalktarren',
         description: 'Focused on software development apprenticeship applications.',
+      },
+      {
+        year: '2026 - today',
+        title: '10th school year, Dietikon (Construction Technology)',
+        description: 'Continuing education and preparation for an apprenticeship.',
       },
     ],
     schnuppereinsaetzeTitle: 'Completed trial internships',
@@ -112,6 +123,7 @@ export const content = {
       'Trial day at Google (EDB & application development)',
       'Trial afternoon at UBS (platform & application development)',
       'Talent matching with UBS, Swisscom, Accenture at ICT Campus',
+      'Online trial afternoon Julius Bär (application development & platform development)',
     ],
     projectsTitle: 'My projects (GitHub)',
     loadingProjects: 'Loading projects from GitHub...',
