@@ -10,7 +10,7 @@ export const content = {
       'Ich bin {age} Jahre alt und motiviert, meine Reise als angehende Applikationsentwicklerin zu starten.',
     aboutTitle: 'Ueber mich',
     aboutItems: [
-      'Ich besuche zurzeit das 10. Schuljahr in Dietikon (Klasse Konstruktionstechnik).',
+      'Ich besuche zurzeit die Berufswahlschule Dietikon (Klasse Konstruktionstechnik).',
       'Ich lerne gern praktisch und entwickle mich in Programmierung laufend weiter.',
       'Im ICT-Campus habe ich Grundlagen in Python, Scratch und Logik aufgebaut.',
       'Hobbys: Musik hören, tanzen, zeichnen und im ICT-Campus programmieren.',
@@ -18,24 +18,19 @@ export const content = {
     cvTitle: 'Schulische Laufbahn',
     cvTimeline: [
       {
+        year: '2026 - heute',
+        title: 'Berufswahlschule Dietikon (Konstruktionstechnik)',
+        description: 'Weiterführung der schulischen Laufbahn und Vorbereitung auf die Berufslehre.',
+      },
+      {
+        year: '2023 - 2026',
+        title: '1. bis 3. Sekundarstufe, Schule Kalktarren',
+        description: 'Vertiefung in schulischen Faechern, Berufsorientierung und Fokus auf Lehrstellensuche Informatik Applikationsentwicklung.',
+      },
+      {
         year: '2017 - 2023',
         title: '1. bis 6. Primarstufe, Schule Kalktarren',
         description: 'Solide schulische Basis und erste Interessen in Technik.',
-      },
-      {
-        year: '2023 - 2025',
-        title: '1. bis 2. Sekundarstufe, Schule Kalktarren',
-        description: 'Vertiefung in schulischen Faechern und Berufsorientierung.',
-      },
-      {
-        year: '2025 - 2026',
-        title: '3. Sekundarstufe, Schule Kalktarren',
-        description: 'Fokus auf Lehrstellensuche Informatik Applikationsentwicklung.',
-      },
-      {
-        year: '2026 - heute',
-        title: '10. Schuljahr, Dietikon (Konstruktionstechnik)',
-        description: 'Weiterführung der schulischen Laufbahn und Vorbereitung auf die Berufslehre.',
       },
     ],
     schnuppereinsaetzeTitle: 'Abgeschlossene Schnuppereinsätze',
@@ -59,8 +54,8 @@ export const content = {
     languagesTitle: 'Sprachliche Fähigkeiten',
     languages: [
       { name: 'Englisch', level: 5 },
-      { name: 'Portugiesisch', level: 5 },
-      { name: 'Deutsch', level: 4 },
+      { name: 'Portugiesisch (Muttersprache)', level: 5 },
+      { name: 'Deutsch (Muttersprache)', level: 4 },
       { name: 'Französisch', level: 4 },
     ],
     skillsTitle: 'Skills',
@@ -85,7 +80,7 @@ export const content = {
       'I am {age} years old and excited to begin my journey as a future software developer.',
     aboutTitle: 'About me',
     aboutItems: [
-      'I currently attend the 10th school year in Dietikon (Construction Technology class).',
+      'I currently attend Berufswahlschule Dietikon (Construction Technology class).',
       'I enjoy hands-on learning and improving my programming skills step by step.',
       'At ICT Campus I built foundations in Python, Scratch, and programming logic.',
       'Hobbies: listening to music, dancing, drawing, and coding at ICT Campus.',
@@ -93,24 +88,19 @@ export const content = {
     cvTitle: 'Education',
     cvTimeline: [
       {
+        year: '2026 - today',
+        title: 'Berufswahlschule Dietikon (Construction Technology)',
+        description: 'Continuing education and preparation for an apprenticeship.',
+      },
+      {
+        year: '2023 - 2026',
+        title: 'Secondary school years 1-3, Schule Kalktarren',
+        description: 'Strengthened academic skills, explored career paths, and focused on software development apprenticeship applications.',
+      },
+      {
         year: '2017 - 2023',
         title: 'Primary school, Schule Kalktarren',
         description: 'Built a strong school foundation and first interest in technology.',
-      },
-      {
-        year: '2023 - 2025',
-        title: 'Secondary school years 1-2, Schule Kalktarren',
-        description: 'Strengthened academic skills and explored career paths.',
-      },
-      {
-        year: '2025 - 2026',
-        title: 'Secondary school year 3, Schule Kalktarren',
-        description: 'Focused on software development apprenticeship applications.',
-      },
-      {
-        year: '2026 - today',
-        title: '10th school year, Dietikon (Construction Technology)',
-        description: 'Continuing education and preparation for an apprenticeship.',
       },
     ],
     schnuppereinsaetzeTitle: 'Completed trial internships',
@@ -134,8 +124,8 @@ export const content = {
     languagesTitle: 'Language skills',
     languages: [
       { name: 'English', level: 5 },
-      { name: 'Portuguese', level: 5 },
-      { name: 'German', level: 4 },
+      { name: 'Portuguese (native language)', level: 5 },
+      { name: 'German (native language)', level: 4 },
       { name: 'French', level: 4 },
     ],
     skillsTitle: 'Skills',

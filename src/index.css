@@ -173,13 +173,11 @@ img.sticker.sticker-bunny {
 
 .brand {
   margin: 0;
-  font-family: 'Philosykos', 'DM Serif Display', 'Antic Didone', Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(2.15rem, 5vw, 3.35rem);
-  line-height: 1.08;
-  letter-spacing: 0.02em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1.2;
   color: #123f66;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -236,6 +234,8 @@ img.sticker.sticker-bunny {
 }
 
 .card h2 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
   color: #123f66;
   letter-spacing: 0.1px;
 }
@@ -259,6 +259,8 @@ img.sticker.sticker-bunny {
 
 .hero h1 {
   margin: 8px 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
   font-size: clamp(1.7rem, 3vw, 2.5rem);
   color: #0f3657;
 }
@@ -277,6 +279,20 @@ img.sticker.sticker-bunny {
 .hero-portrait-float {
   position: relative;
   animation: portrait-float 5.5s ease-in-out infinite;
+}
+
+.hero-portrait-inner {
+  display: contents;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-portrait {
+  cursor: default;
+  transition: scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-portrait:hover {
+  scale: 1.03;
 }
 
 @keyframes portrait-float {
@@ -613,7 +629,7 @@ img.sticker.sticker-bunny {
 
 @media (max-width: 800px) {
   .brand {
-    font-size: clamp(1.85rem, 7vw, 2.5rem);
+    font-size: clamp(1.35rem, 5.5vw, 1.85rem);
   }
 
   .hero-grid {
