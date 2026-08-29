@@ -5,6 +5,8 @@ import { useEditModeAuth } from './hooks/useEditModeAuth'
 import { useGithubRepos } from './hooks/useGithubRepos'
 import { HeroPortrait } from './components/HeroPortrait'
 import { LanguageSkills } from './components/LanguageSkills'
+import { StellwerkResults } from './components/StellwerkResults'
+import { StrengthsWeaknesses } from './components/StrengthsWeaknesses'
 import { SkillsManager } from './components/SkillsManager'
 
 function App() {
@@ -109,6 +111,15 @@ function App() {
         </section>
 
         <section className="card">
+          <h2>{text.stellwerkTitle}</h2>
+          <StellwerkResults
+            items={text.stellwerkItems}
+            scaleLabel={text.stellwerkScaleLabel}
+            referenceLabel={text.stellwerkReferenceLabel}
+          />
+        </section>
+
+        <section className="card">
           <h2>{text.schnuppereinsaetzeTitle}</h2>
           <ul className="list">
             {text.schnuppereinsaetzeItems.map((item) => (
@@ -143,6 +154,16 @@ function App() {
         <section className="card">
           <h2>{text.skillsTitle}</h2>
           <SkillsManager language={language} isOwnerMode={editAuth.isOwnerMode} />
+        </section>
+
+        <section className="card sw-section">
+          <h2>{text.strengthsWeaknessesTitle}</h2>
+          <StrengthsWeaknesses
+            strengthsLabel={text.strengthsLabel}
+            weaknessesLabel={text.weaknessesLabel}
+            strengths={text.strengths}
+            weaknesses={text.weaknesses}
+          />
         </section>
 
         <section className="card">
